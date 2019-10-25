@@ -1,0 +1,11 @@
+bin/hadoop namenode -format
+sbin/start-all.sh
+jps
+bin/hadoop dfs -mkdir /user/input123 
+bin/hadoop dfs -put file1.txt /user/input123/ 
+bin/hadoop com.sun.tools.javac.Main WordCount.java 
+jar cf wc.jar WordCount*.class
+bin/hadoop jar wc.jar WordCount /user/input123 user/output123
+bin/hadoop dfs -ls  user/output123
+bin/hadoop dfs -cat user/output123/part-r-00000
+
